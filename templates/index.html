@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Library</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+      <div style="display: flex; justify-content: center; align-items: center; margin: 0px; padding: 0px;" class="p-3 mb-2 bg-dark-subtle text-emphasis-dark"><h1>Virtual Library</h1></div>
+          <div style="display: flex; justify-content: center; align-items: center; margin: 0px; padding: 0px;" class="p-3 mb-2 bg-dark-subtle text-emphasis-dark"></div>
+
+
+
+  </head>
+  <body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <p>{{error}}</p>
+  </body>
+      <div class="d-flex justify-content-center">
+      <table style="width: 65%; class-align: center" class="table table-dark table-hover items-center">
+           <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Rating</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody class="table-group-divider">
+  {% for book in data %}
+    <tr>
+      <th scope="row">{{loop.index}}</th>
+      <td>{{book[1]}}</td>
+      <td>{{book[2]}}</td>
+      <td>{{book[3]}}</td>
+      <td><a style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .80rem;" class="btn btn-danger" href="{{ url_for('delete', id=book[0])}}">Delete</a>
+          <a style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .80rem;" class="btn btn-info" href="{{ url_for('edit', id=book[0]) }}">Edit Rating</a>
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+      </table>
+          </div>
+        {% if not data %}
+        <p><h3 style="text-align: center">Library is empty</h3></p>
+        {% endif %}
+<div style="text-align: center;">
+    <a style="class-align: center" class="btn btn-outline-secondary" href="{{ url_for('add')}}">Add New Book</a>
+</div>
+</html>
